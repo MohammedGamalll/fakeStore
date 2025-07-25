@@ -1,1 +1,112 @@
-<p>products works!</p>
+<div class="p-4 sm:ml-64 dark:bg-gray-950">
+    <div
+        class="p-4 mt-14 ">
+        <div
+            class="w-full flex justify-center md:flex-row flex-col items-baseline mx-auto pt-10 space-x-8 space-y-4 mb-20 ">
+            <!-- Search Floating Label Input -->
+            <form class="max-w-lg md:w-1/2 w-full ">
+                <div class="relative">
+                    <span
+                        class="absolute start-0 bottom-3 flex items-center text-black dark:text-white pl-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <circle cx="11" cy="11" r="8"
+                                stroke-width="2"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"
+                                stroke-width="2"></line>
+                        </svg>
+                    </span>
+                    <div class="relative w-full max-w-xs">
+
+                        <input
+                            [(ngModel)]="searchValue"
+                            type="search"
+                            id="floating-search"
+                            class="block w-full text-base pl-10 text-gray-900 dark:text-white bg-transparent border-0 border-b-2 border-blue-300 dark:border-blue-900 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            placeholder=" "
+                            autocomplete="off"
+                            name="floating-search" />
+                        <label
+                            for="floating-search"
+                            class="absolute text-sm text-black dark:text-white duration-300 transform scale-100 top-2 left-8 z-10 origin-[0_0]
+                                  peer-placeholder-shown:scale-100
+                                  peer-placeholder-shown:top-3
+                                  peer-placeholder-shown:left-8
+                                  peer-focus:scale-75
+                                  peer-focus:-translate-y-6
+                                  peer-focus:left-2
+                                  peer-focus:top-3">
+                            Search products
+                        </label>
+                    </div>
+                </div>
+            </form>
+
+            <form class="max-w-xs md:w-40 w-full">
+                <div class="relative">
+
+                    <select
+                        id="floating-sort"
+                        [(ngModel)]="sortType"
+                        name="floating-sort"
+                        class="block w-full text-base text-gray-900! dark:text-white! dark:bg-gray-950 border-0 border-b-2 border-blue-300  dark:border-blue-900 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer transition-colors appearance-none "
+                        placeholder=" ">
+                        <option value disabled hidden selected></option>
+                        <option value="name-asc">Name (A–Z)</option>
+                        <option value="name-desc">Name (Z–A)</option>
+                        <option value="price-asc">Price (Low to High)</option>
+                        <option value="price-desc">Price (High to Low)</option>
+                    </select>
+
+                </div>
+            </form>
+        </div>
+        <div
+            class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 mb-4 ">
+
+            @for (item of Products| searchProduct: searchValue |
+            productSort:sortType ; track item.id)
+            {
+            <div class="p-4 ">
+                <div
+                    class="h-full border-2  group border-gray-200 border-opacity-60 rounded-lg overflow-hidden dark:bg-gray-800 bg-white">
+                    <a [routerLink]="['/product', item.id]">
+                        <img
+                            class="lg:h-48 md:h-36 max-h-60 w-full object-contain object-center p-4 transform group-hover:scale-110 transition-transform duration-300 ease-in-out"
+                            [src]="item.image" alt="blog">
+                        <div class="p-6">
+                            <h2
+                                class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">{{item.category}}</h2>
+                            <h1
+                                class="title-font line-clamp-1 font-bold dark:text-white text-gray-900 mb-3 text-2xl">{{item.title}}</h1>
+
+                            <div
+                                class="flex items-center justify-between flex-wrap">
+                                <a
+                                    class="dark:text-white text-green-800 inline-flex items-center md:mb-2 lg:mb-0">Learn
+                                    More
+                                    <svg class="w-4 h-4 ml-2"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor" stroke-width="2"
+                                        fill="none"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M5 12h14"></path>
+                                        <path d="M12 5l7 7-7 7"></path>
+                                    </svg>
+                                </a>
+                                <span
+                                    class="dark:text-white ps-2 text-lg font-bold">
+                                    {{item.price | currency: 'EGP ' :
+                                    true}}</span>
+
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            }
+
+        </div>
+    </div>
+</div>

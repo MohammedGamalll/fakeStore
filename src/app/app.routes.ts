@@ -24,8 +24,8 @@ export const routes: Routes = [
   {
     path: 'product/:id',
     loadComponent: () =>
-      import('./pages/product/product.component').then(
-        (e) => e.ProductComponent
+      import('./pages/product-details/product-details.component').then(
+        (e) => e.ProductDetailsComponent
       ),
     title: 'Product Details',
   },

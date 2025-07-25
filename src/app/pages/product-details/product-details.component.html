@@ -1,0 +1,82 @@
+<section
+    class="text-black dark:text-white body-font bg-white dark:bg-gray-950 rounded-lg min-h-screen flex items-center justify-center">
+    <div class="container px-5 py-24 mx-auto">
+        <div
+            class="lg:w-4/5 mx-auto justify-between flex flex-wrap items-center">
+            <div class="flex flex-col items-center w-1/2 mx-auto">
+                <div class="inner lg:w-1/2 w-full p-4 rounded-4xl">
+                    <img alt="ecommerce"
+                        class="w-full object-contain object-center rounded  dark:shadow-md"
+                        [src]="productDetails.image">
+                </div>
+
+                <owl-carousel-o [options]="customOptions"
+                    class="w-2/3">
+
+                    @for (item of imageCurosal; track $index) {
+                    <ng-template carouselSlide>
+                        <div class="inner md:p-4 p-2">
+                            <img
+                                [src]="productDetails.image"
+                                (click)="changeMainImage(productDetails.image)"
+                                class="object-contain md:h-auto h-20 my-4 w-full rounded-lg cursor-pointer border border-gray-200 dark:border-gray-400 bg-white dark:shadow-md"
+                                alt="gallery-image" />
+                        </div>
+                    </ng-template>
+                    }
+                </owl-carousel-o>
+            </div>
+
+            <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+                <h2
+                    class="text-sm title-font text-gray-500 dark:text-gray-400 tracking-widest">{{productDetails.category}}</h2>
+                <h1
+                    class="text-gray-900 dark:text-white text-4xl title-font font-bold mb-1">{{productDetails.title}}</h1>
+                <div class="flex mb-4">
+                    <span class="flex items-center">
+                        <span
+                            class="text-gray-600 dark:text-gray-300 ml-3">{{productDetails.rating.rate}}</span>
+                        <svg fill="currentColor" stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            class="w-4 h-4 text-yellow-400 ms-2"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                        </svg>
+                    </span>
+                    <span
+                        class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 dark:border-gray-700 space-x-2s">
+                        {{productDetails.rating.count}} Reviews</span>
+
+                </div>
+                <p class="leading-relaxed text-lg dark:text-gray-200">
+                    {{productDetails.description}}
+                </p>
+                <div
+                    class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 dark:border-gray-700 mb-5"></div>
+                <div
+                    class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 dark:border-gray-700 mb-5">
+                    <span
+                        class="font-medium text-2xl text-main-900 dark:text-white">
+                        {{productDetails.price | currency: 'EGP ' : true}}
+                    </span>
+                    <button
+                        class="flex ml-auto text-white bg-green-500 hover:bg-green-700 dark:bg-green-600 dark:hover:bg-green-400 transition-all duration-300 cursor-pointer border-0 py-2 px-6 focus:outline-none rounded shadow">
+                        Add To Cart
+                    </button>
+                    <button
+                        class="rounded-full w-10 h-10 bg-gray-200 dark:bg-gray-700 p-0 border-0 inline-flex items-center justify-center text-gray-500 dark:text-gray-300 ml-4 hover:text-red-800 dark:hover:text-red-400 transition-all duration-300 cursor-pointer">
+                        <svg fill="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2"
+                            class="w-5 h-5" viewBox="0 0 24 24">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
